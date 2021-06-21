@@ -165,19 +165,19 @@ class Mooc:
                         cellStatus = cellItem['isStudyFinish']
                         cellType = cellItem['categoryName']
                         print(f'\t\t当前小节:{cellName}'+ "\t类型：" + cellType,end='')
-                    if cellStatus is True:
-                        print("\t\t------课程完成，不刷课-------")
-                        continue
-                    elif cellType == 5:
-                        print('......暂不支持自动答题,跳过')
-                    else:
-                        data = self.studyView(cellID, moduleID)
-                        _time = data['VideoTimeLong']
-                        _viewType = '888' if data['IsAllowDownLoad'] else '1229'
-                        process = self.studyProcess(moduleID, cellID, _time, _time, _viewType)
-                        _time = random.randint(minTime, maxTime)
-                        print(f'......成功 将在{_time}s后进行下一小节的观看' if process else '......失败')
-                        time.sleep(_time)
+                        if cellStatus is True:
+                            print("\t\t------课程完成，不刷课-------")
+                            continue
+                        elif cellType == 5:
+                            print('......暂不支持自动答题,跳过')
+                        else:
+                            data = self.studyView(cellID, moduleID)
+                            _time = data['VideoTimeLong']
+                            _viewType = '888' if data['IsAllowDownLoad'] else '1229'
+                            process = self.studyProcess(moduleID, cellID, _time, _time, _viewType)
+                            _time = random.randint(minTime, maxTime)
+                            print(f'......成功 将在{_time}s后进行下一小节的观看' if process else '......失败')
+                            time.sleep(_time)
           
 if __name__ == '__main__':
     Mooc().Main()
