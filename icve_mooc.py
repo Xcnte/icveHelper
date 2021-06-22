@@ -1,5 +1,5 @@
-# Version 1.1
-# Created by Xcnte on 2021-06-21
+# Version 1.2
+# Created by Xcnte on 2021-06-22
 import random
 
 import requests
@@ -7,8 +7,8 @@ from io import BytesIO
 from PIL import Image
 import time
 
-username = ''  # 用户名
-password = ''  # 密码
+username = str(input('请输入账号：'))  # 用户名
+password = str(input('请输入密码：'))  # 密码
 
 minTime = 5  # 观看完一个小节的最小等待时间(单位：秒) 最低5,推荐20以上
 maxTime = 8  # 观看完一个小节的最大等待时间(单位：秒) 推荐8,推荐30以上
@@ -32,7 +32,6 @@ class Mooc:
     URL_STUDY_VIEW = 'https://mooc.icve.com.cn/study/learn/viewDirectory'           # 获取视频总时长
     URL_STUDY_PROCESS = 'https://mooc.icve.com.cn/study/learn/statStuProcessCellLogAndTimeLong'     # 刷课接口
     
-
     def __init__(self):
         self.session = requests.session()
         self.loginStatus = self.login()
@@ -87,9 +86,9 @@ class Mooc:
         res = self.session.post(Mooc.URL_COURSE_ALL, data=data, headers=headers).json()
         print('=========================')
         for i in range(len(res['list'])):
-            print(f'\t{i}、', res['list'][i].get('courseName'))
+            print(f'\t{i}.', res['list'][i].get('courseName'))
         while True:
-            num = input('选择您的课程:')
+            num = input('选择您的课程（序号）:')
             try:
                 courseID = res['list'][int(num)].get('courseOpenId')
                 break
